@@ -1,0 +1,9 @@
+const { amount } = (await api.get(`/stock/${productId}`)).data;
+    try {
+      if (amount > 0) {
+        const product = (await api.get(`/products/${productId}`)).data;
+        setCart([...cart, product]);
+        localStorage.setItem("@RocketShoes:cart", JSON.stringify(cart));
+      } else {
+        throw Error("Sem stock");
+      }
